@@ -1,0 +1,10 @@
+body, html, #app {
+  overflow: hidden;
+  text-overflow: clip;
+  margin: 0px;
+  padding: 0px;
+}
+
+canvas {
+  display: block;
+}
