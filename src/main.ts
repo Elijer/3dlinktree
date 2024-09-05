@@ -24,7 +24,7 @@ class InteractiveTextScene {
     private raycaster: THREE.Raycaster;
     private mouse: THREE.Vector2;
     private textMeshes: THREE.Mesh[] = [];
-    private boxMeshes: THREE.Mesh[] = [];
+    private boxMeshes: any[] = [];
     private boxRotationSpeeds: number[] = [];
     private canvas: HTMLCanvasElement;
     private originalColors: number[] = [];
@@ -75,7 +75,7 @@ class InteractiveTextScene {
         this.canvas.addEventListener('mousemove', (event) => this.onMouseMove(event), false);
         this.canvas.addEventListener('click', (event) => this.onMouseClick(event), false);
 
-        this.animate();
+        this.animate(Date.now());
     }
 
     private loadFont(): void {
@@ -169,7 +169,7 @@ class InteractiveTextScene {
 
         const intersects = this.raycaster.intersectObjects(this.hitAreaMeshes);
 
-        this.textMeshes.forEach((mesh, index) => {
+        this.textMeshes.forEach((_, index) => {
             if (intersects.length > 0 && intersects[0].object === this.hitAreaMeshes[index]) {
                 this.textScales[index].target = 1.4; // Target scale when hovered
                 this.boxRotationSpeeds[index] = 0.2; // Increase rotation speed when hovered
